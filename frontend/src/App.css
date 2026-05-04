@@ -1,0 +1,164 @@
+/* Centralizando o cartão na tela inteira */
+.login-container {
+  display: flex; /*ativa o modo flex box, transfoormando um elemento em um container flexível. Isso alinha automaticamente os filhos diretos (itens flex) em uma linha, facilitando o alinhamento, distribuição de espaço e criação de layouts responsivos sem usar floats ou posicionamentos complexos */
+  justify-content: center; /*alinha itens no eixo principal (geralmente horizontal) de um conteiner flexbox ou grid, distribuindo o espaço extra. centraliza os itens. */ 
+  align-items: center; /*centraliza os itens verticalmente. usada no container pai para controlar o alinhaemnto vertical geral.*/ 
+  min-height: 100vh; /*coloca a altura minima de um elemento, garantindo que ele nunca seja menor que um valor especifico enquanto permite que ele aumente naturalmente caso o conteudo exceda essa altura */
+}
+
+/*o "cartão" branco principal */
+.login-card {
+  background-color: #ffffff;
+  padding: 40px; /* cria um espaçamento interno entre o conteúdo de um elemento e sua borda. afasta o conteúdo das extremidades da caixa, aumentando a area interna sem alterar o tamanho do elemento externo, a menos que o box-sizing esteja configurado como content-box */ 
+  border-radius: 12px; /* arredonda os cantos de elementos */ 
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05); /*sombra bem suave. adiciona sombras a elementos, aceitando valores de deslocamento (X,Y), desfoque (blur), espelhamento (spread) e cor. A sintaxe básica é box-shadow: offset-x offset-y blut spread color inset; . pode-se criar sombras externas (padrao) cou internas usando a palavra-chave inset */
+  width: 100%;
+  max-width: 400px; /* define a largura maxima de um elemento, impedindo que ele ultrapasse um determinado tamanho de telas grandes, enquanto permanece responsivo em telas menores. evita que textos fiquem muito longos e imagens se deformem */ 
+}
+
+/* --- Cabeçalho ---*/
+.login-header{
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.logo-placeholder{
+  background-color: #48b5b5; /* cor verde/azulada parecida com a imagem */
+  color: white;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  margin: 0 auto 16px;
+}
+
+.login-header h2{
+  font-size: 24px;
+  color: #111827;
+  margin-bottom: 8px;
+}
+
+.login-header p{
+  color: #6b7280;
+  font-size: 14px;
+}
+
+/* --- Botão do Google --- */
+.google-btn{
+  width: 100%;
+  padding: 10px;
+  background-color: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500; /* define a espessura ou "peso" (negrito/fino) de uma fonte. pode ser usada com palavras-chave (normal,bold) ou valores numéricos de 100 a 900. o padrão é 400(normal) e 700 equivale ao negrito (bold) */ 
+  color: #374151;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px; /* define o espaçamento entre linhas e colunas de elementos em layouts flexbox ou grid. é a forma moderna e recomendada de criar espaços, pois aplica a distância apenas entre os itens, sem adicionar margens externas */
+  cursor: pointer; /* define a aparencia do ponteiro do mouse ao passar sobre um elemento. usa-se cursor:valor; no CSS, onde os valores populares incluem pointer (maozinha), help (ajuda), move (mover) e none (ocultar) */
+  transition: background-color o.2s; /* permitem mudar valores de propriedade suavemente em uma duração especifica, ao inves de trocá-los instantaneamente    */ 
+}
+
+.google-btn:hover{
+  background-color: #f9fafb;
+}
+
+/* --- Linha divisória "OR" --- */
+.divider{
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 24px 0;
+  color: #9ca3af;
+  font-size: 12px;
+  text-transform: uppercase; /* controla a capitalização de textos, permitindo converter letras para maiúsculas, minúsculas ou capitalizar a primeira letra de cada palavra. principais valores: uppercase (tudo maiúsculo), lowercase (tudo minúsculo), capitalize (primeira letra maiúscula) e none (sem alteração)  */ 
+}
+
+/* Cria as linhas antes e depois do texto "OR"*/
+.divider::before,
+.divider::after{
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.divider span{
+  padding: 0 10px;
+}
+
+/* --- Formulário e Inputs --- */
+.login-form {
+  display: flex;
+  flex-direction: column; /* define a direção (linha ou coluna) e a ordem (normal ou invertida) dos itens dentro de um conteiner flexbox */
+  gap: 16px;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.input-group label{
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+}
+
+.input-group input{
+  padding: 10px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none; /*  */
+  transition: border-color 0.2s;
+}
+
+/* Borda colorida ao clicar no input */
+.input-group input:focus{
+  border-color: #48b5b5;
+}
+
+/* --- Botão de cadastro principal --- */
+.submit-btn{
+  width: 100%;
+  padding: 12px;
+  background-color: #111827; /* azul bem escuro quase preto*/
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: background-color 0.2s;
+}
+
+.submit-btn:hover{
+  background-color: #1f2937;
+}
+
+/* --- Rodapé --- */
+.login-footer{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 24px;
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.login-footer a{
+  color: #374151;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.login-footer a:hoover{
+  text-decoration: underline;
+}
