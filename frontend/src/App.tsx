@@ -1,100 +1,31 @@
-import './App.css';
-import { useState } from 'react';
+import { useState } from "react";
+import Login from "./Login";
+import Cadastro from "./Cadastro";
 
-export default function App() {
-  // 1. Estados sempre no topo do componente
-  const [cpf, setCpf] = useState('');
-  const [password, setPassword] = useState('');
+export default function App(){
+  // vou usar um estado temporário só pra conseguir visualizar as duas telas ao mesmo tempo
+  //pode remover esse useState e os buttons abaixo pra conseguir
+  const [telaAtual, setTelaAtual] = useState('login');
 
-  const handleLogin = async (e: React.FormEvent) => {
-    e.preventDefault();
-
-    try {
-      const res = await fetch("http://localhost:3000/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ cpf, password }),
-      });
-
-      const data = await res.json();
-      console.log(data);
-
-      // CORREÇÃO: Usamos res.ok para verificar se o status é 200-299
-      // ou verificamos a mensagem que vimos no seu console
-      if (data.message === 'Login feito com sucesso') {
-        alert("Login realizado!");
-        
-        if (data.token) {
-          localStorage.setItem("token", data.token);
-        }
-      } else {
-        alert("Erro no login: " + (data.message || "Credenciais inválidas"));
-      }
-    } catch (error) {
-      console.error("Erro na requisição:", error);
-      alert("Erro ao conectar com o servidor.");
-    }
-  };
-
-  return (
-    <div className="login-container">
-      <div className='login-card'>
-        {/* Cabeçalho */}
-        <div className='login-header'>
-          <div className='logo-placeholder'> 💧 </div>
-          <h2> Bem vindo ao SISAT </h2>
-          <p> Entre para continuar </p>
-        </div>
-
-        {/* Botão do Google */}
-        <button className='google-btn' type="button">
-          <span>G</span> Continue com Google
-        </button>
-
-        {/* Divisor "OR" */}
-        <div className='divider'>
-          <span>OR</span>
-        </div>
-
-        {/* Formulário */}
-        <form className='login-form' onSubmit={handleLogin}>
-          <div className='input-group'>
-            <label htmlFor='cpf'>CPF</label>
-            <input 
-              type='text' 
-              id='cpf' 
-              placeholder='000.000.000-00' 
-              value={cpf} 
-              onChange={(e) => setCpf(e.target.value)}
-              required 
-            />
-          </div>
-
-          <div className='input-group'>
-            <label htmlFor='senha'>Senha</label>
-            <input 
-              type='password' 
-              id='senha' 
-              placeholder='••••••••' 
-              value={password} 
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-          </div>
-
-          <button type='submit' className='submit-btn'>
-            Entrar
-          </button>
-        </form>
-
-        {/* Links de Rodapé */}
-        <div className='login-footer'>
-          <a href='#esqueceu'>Esqueci minha senha</a>
-          <span>Não tem uma conta? <a href='#cadastrese'>Cadastre-se</a></span>
-        </div>
+  return(
+    <div>
+      {/* botões provisórios só pra conseguir alternar entre as telas e ver como ficou */}
+      {/*COMEÇO DO QUE PODE APAGAR */}
+      <div style={{position: 'absolute', 
+        top:10, 
+        left:10, 
+        gap:10, 
+        display: 'flex'
+        }}>
+        <button onClick={() => setTelaAtual('login')}>Ver Tela de Login</button>
+        <button onClick={() => setTelaAtual('cadastro')}>Ver Tela de Cadastro</button>
       </div>
+        {/* FIM DO QUE PODE APAGAR */}
+
+
+      {/* ↓ se a tela atual for login, mostra o componente Login, senão, mostra o Cadastro */}
+      {/* pelo o que eu entendi, essa linha ↓ vai ser substituida por algo como <routes>...</routes> PELO BACKEND*/}
+      {telaAtual === 'login' ? <Login /> : <Cadastro />}
     </div>
   );
 }

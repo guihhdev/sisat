@@ -6,6 +6,9 @@
 }
 
 body{
-  background-color: #f3f4f6; /*Fundo cinza bem claro*/
+  /* background: #def6ff; padrao
+  background: linear-gradient(90deg,rgba(222, 246, 255, 1) 0%, rgba(199, 255, 243, 1) 100%, rgba(255, 255, 255, 1) 55%); */
+  background: #ccefff;
+background: linear-gradient(90deg,rgba(204, 239, 255, 1) 0%, rgba(207, 255, 240, 1) 100%, rgba(255, 255, 255, 1) 55%);
   color: #333;
 }
